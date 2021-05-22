@@ -11,7 +11,7 @@ matplotlib.rcParams['font.family'] = 'sans-serif'
 matplotlib.rcParams['font.sans-serif'] = 'Arial'
 
 def label_outliers(
-    _x, _y, _val, proximity_cutoff=1, ax=None, n_points_too_close_cutoff=3, verbose=False):
+    _x, _y, _val, proximity_cutoff=1, ax=None, n_points_too_close_cutoff=3, fontsize=5, verbose=False):
     
     if proximity_cutoff < 0:  # Estimate from data.
         proximity_cutoff = ((np.std(_x) * np.std(_y))**0.5)/2
@@ -29,5 +29,5 @@ def label_outliers(
         if n_points_close >= n_points_too_close_cutoff:
             continue  # Don't label.
         if ax is not None:
-            ax.text(x, y, val, size=5)
+            ax.text(x, y, val, size=fontsize)
 
