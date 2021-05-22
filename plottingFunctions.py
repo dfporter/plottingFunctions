@@ -17,7 +17,7 @@ def label_outliers(
         proximity_cutoff = ((np.std(_x) * np.std(_y))**0.5)/2
         verbose and (print(f"Estimating a proximiting cufoff {proximity_cutoff} because proximity_cutoff<0"))
 
-    (ax is None) and print(f"ax was not given - this function does nothing without the ax parameter')
+    (ax is None) and print(f"ax was not given - this function does nothing without the ax parameter")
         
     points = np.array([(x,y) for x,y in zip(_x, _y)])
     nbrs = NearestNeighbors(n_neighbors=min([len(points), 10])).fit(points)
