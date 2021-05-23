@@ -3,6 +3,9 @@ import numpy as np
 
 import matplotlib
 
+# Import the following to allow matplotlib to find sans-serif on CentOS.
+import matplotlib.font_manager
+
 # Always include the following:
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
