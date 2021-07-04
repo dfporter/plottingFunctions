@@ -2,6 +2,7 @@
 from scipy.cluster import hierarchy
 import numpy as np
 import fastcluster
+import pandas
 
 def calculate_dendrogram(linkage):
     """Calculates a dendrogram based on the linkage matrix
