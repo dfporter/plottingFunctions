@@ -16,6 +16,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/dfporter/plottingFunctions/issues"
     },
     license='MIT',
-    packages=['toolbox'],
+    packages=['plottingFunctions'],
     install_requires=['numpy', 'sklearn', 'scipy', 'pandas'],
 )
