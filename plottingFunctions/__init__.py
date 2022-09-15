@@ -1,3 +1,3 @@
 import plottingFunctions
 import plottingFunctions.cluster_dataframe
-import plottingFunctions.label_outliers
+import plottingFunctions.plottingFunctions
