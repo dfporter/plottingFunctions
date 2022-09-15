@@ -21,6 +21,11 @@ Requires:
 Example:
 ```
 import plottingFunctions
+import pandas
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
 q = pandas.DataFrame(np.random.gamma(1,.1, size=(80, 2)), columns=list('xy'))
 fig, ax = plt.subplots()
 sns.scatterplot(data=q, x='x', y='y')
