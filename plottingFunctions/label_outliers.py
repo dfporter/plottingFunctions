@@ -17,13 +17,15 @@ matplotlib.rcParams['font.sans-serif'] = 'Arial'
 def label_outliers(
     _x, _y, _val, proximity_cutoff=None, scale_cutoff=1, ax=None, n_points_too_close_to_label=4, 
     n_points_too_close_to_need_arrow=1, no_adjust=False, dodge=0,
-    arrowprops={'arrowstyle':'-', 'color':'gray', 'alpha':.5}, fontsize=5, verbose=False, **adjust_text_kwargs):
+    arrowprops={'arrowstyle':'-', 'color':'gray', 'alpha':.5}, fontsize=5, 
+    always_plot=[], verbose=False, **adjust_text_kwargs):
     """Label points on a graph. Identifies points with few neighbors and points without an arrow.
     If arrowprops is not False (default), label with an arrow. adjustText is used to plot the text labels.
     Extra keyword arguments are passed to adjustText.adjust_text.
     A higher scale_cutoff is a higher proximity cutoff (fewer labels).
     For faster plotting of huge numbers of datapoints, use no_adjust=True.
-    The dodge option should only be used if no_adjust=True."""
+    The dodge option should only be used if no_adjust=True.
+    Pass always_plot a list of labels to always plot those labels."""
     
     if proximity_cutoff is None:  # Estimate from data.
         xspan,yspan = (np.max(_x)-np.min(_x), np.max(_y)-np.min(_y))
@@ -42,18 +44,21 @@ def label_outliers(
           
     closest_points = distances[:, 1:n_points_too_close_to_label+2]
     n_points_close = [len(x[x<proximity_cutoff]) for x in closest_points]
-          
+    
+    if not no_adjust:
+        dodge = 0
+
     textsNoArrow, textsWithArrow = [], []
     for (x, y, val, n_points_close_to_this_dot) in zip(_x, _y, _val, n_points_close):
         
         if np.any(~np.isfinite([x, y])):
             continue
-        
+
         if n_points_close_to_this_dot < n_points_too_close_to_need_arrow:
             t = ax.text(x + dodge, y + dodge, val, size=fontsize)
             textsNoArrow.append(t)
             
-        elif n_points_close_to_this_dot < n_points_too_close_to_label:
+        elif (n_points_close_to_this_dot < n_points_too_close_to_label) or (val in always_plot):
             t = ax.text(x + dodge, y + dodge, val, size=fontsize)
             textsWithArrow.append(t)
     
