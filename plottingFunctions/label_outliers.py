@@ -36,8 +36,15 @@ def label_outliers(
         
     points = np.array([(x,y) for x,y in zip(_x, _y)])
     
-    points = points[~np.isnan(points).any(axis=1), :]
-    points = points[np.isfinite(points).all(axis=1), :]
+    # Get rid of nan and infinite.
+    filt = np.isnan(points).any(axis=1)
+    filt2 = ~np.isfinite(points).all(axis=1)
+    filt = np.array([(a | b) for a,b in zip(filt, filt2)])
+    if np.any(filt):
+        _x = np.array(_x[~filt])
+        _y = np.array(_y)[~filt]
+        _val = np.array(_val)[~filt]
+        points = np.array([(x,y) for x,y in zip(_x, _y)])
 
     nbrs = NearestNeighbors(n_neighbors=min([len(points), 10])).fit(points)
     distances, indices = nbrs.kneighbors(points)
