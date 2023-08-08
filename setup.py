@@ -17,5 +17,5 @@ setuptools.setup(
     },
     license='MIT',
     packages=['plottingFunctions'],
-    install_requires=['numpy', 'fastcluster', 'sklearn', 'scipy', 'pandas', 'adjustText'],
+    install_requires=['numpy', 'fastcluster', 'scikit-learn', 'scipy', 'pandas', 'adjustText'],
 )
