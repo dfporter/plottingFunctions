@@ -10,8 +10,8 @@ import matplotlib.font_manager
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 
-matplotlib.rcParams['font.family'] = 'sans-serif'
-matplotlib.rcParams['font.sans-serif'] = 'Arial'
+#matplotlib.rcParams['font.family'] = 'sans-serif'
+#matplotlib.rcParams['font.sans-serif'] = 'Arial'
 
 
 def label_outliers(
