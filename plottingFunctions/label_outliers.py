@@ -46,7 +46,7 @@ def label_outliers(
         _val = np.array(_val)[~filt]
         points = np.array([(x,y) for x,y in zip(_x, _y)])
 
-    nbrs = NearestNeighbors(n_neighbors=min([len(points), 10])).fit(points)
+    nbrs = NearestNeighbors(n_neighbors=min([len(points), n_points_too_close_to_label + 1])).fit(points)
     distances, indices = nbrs.kneighbors(points)
           
     closest_points = distances[:, 1:n_points_too_close_to_label+2]
